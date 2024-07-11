@@ -16,6 +16,14 @@
             gdb
           ];
         };
+        devShells.asm = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            nasm
+            gcc
+            gdb
+            gnumake
+          ];
+        };
       };
     };
 }
