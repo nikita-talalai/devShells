@@ -30,6 +30,7 @@
               patches = [ ./zap-patch.patch ];
               }))
           ];
+          _JAVA_AWT_WM_NONREPARENTING = 1;
         };
       };
     };
