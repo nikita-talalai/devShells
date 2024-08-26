@@ -1,0 +1,21 @@
+--- a/zap.sh
++++ b/zap.sh
+@@ -96,7 +96,7 @@ else
+ fi
+ 
+ ARGS=()
+-for var in "$@"; do
++for var in "${@:2}"; do
+   if [[ "$var" == -Xmx* ]]; then
+     # Overridden by the user
+     JMEM="$var"
+@@ -126,7 +126,7 @@ fi
+ # Start ZAP; it's likely that -Xdock:icon would be ignored on other platforms, but this is known to work
+ if [ "$OS" = "Darwin" ]; then
+   # It's likely that -Xdock:icon would be ignored on other platforms, but this is known to work
+-  exec java ${JMEM} ${JAVAGC} ${JAVADEBUG} -Xdock:icon="../Resources/ZAP.icns" -jar "${BASEDIR}/zap-2.15.0.jar" "${ARGS[@]}"
++  exec java ${JMEM} ${JAVAGC} ${JAVADEBUG} -Xdock:icon="../Resources/ZAP.icns" -jar "${BASEDIR}/zap-2.15.0.jar" "${ARGS[@]:1}"
+ else
+-  exec java ${JMEM} ${JAVAGC} ${JAVADEBUG} -jar "${BASEDIR}/zap-2.15.0.jar" "${ARGS[@]}"
++  exec java ${JMEM} ${JAVAGC} ${JAVADEBUG} -Dsun.java2d.uiScale=$1 -jar "${BASEDIR}/zap-2.15.0.jar" "${ARGS[@]:1}"
+ fi

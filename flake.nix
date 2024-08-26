@@ -26,7 +26,9 @@
         };
         devShells.ctf = pkgs.mkShell {
           buildInputs = with pkgs; [
-            zap
+            (zap.overrideAttrs (previousAttrs: {
+              patches = [ ./zap-patch.patch ];
+              }))
           ];
         };
       };
