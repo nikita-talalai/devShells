@@ -24,6 +24,11 @@
             gnumake
           ];
         };
+        devShells.ctf = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            zap
+          ];
+        };
       };
     };
 }
