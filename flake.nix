@@ -14,6 +14,7 @@
           buildInputs = with pkgs; [
             gcc
             gdb
+            clang-tools
           ];
         };
         devShells.asm = pkgs.mkShell {
@@ -26,11 +27,18 @@
         };
         devShells.ctf = pkgs.mkShell {
           buildInputs = with pkgs; [
+            p7zip
+
             (zap.overrideAttrs (previousAttrs: {
               patches = [ ./zap-patch.patch ];
               }))
           ];
           _JAVA_AWT_WM_NONREPARENTING = 1;
+        };
+        devShells.js = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            nodejs
+          ];
         };
       };
     };
